@@ -2,7 +2,9 @@ package drako.springsecurity.controller;
 
 import drako.springsecurity.dto.AuthenticationRequest;
 import drako.springsecurity.dto.AuthenticationResponse;
+import drako.springsecurity.service.AuthenticationService;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,9 +12,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthenticationController {
 
+    @Autowired
+    private AuthenticationService authenticationService;
+
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid AuthenticationRequest authenticationRequest) {
-        return null;
+        AuthenticationResponse jwtDto = authenticationService.login(authenticationRequest);
+        return ResponseEntity.ok(jwtDto);
     }
 
     @GetMapping("/public-access")
