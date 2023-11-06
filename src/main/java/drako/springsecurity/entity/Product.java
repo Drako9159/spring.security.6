@@ -21,16 +21,6 @@ public class Product {
     @DecimalMin(value = "0.01")
     private BigDecimal price;
 
-    public Product(Long id, String name, BigDecimal price) {
-        this.id = id;
-        this.name = name;
-        this.price = price;
-    }
-
-    public Product() {
-
-    }
-
     public Long getId() {
         return id;
     }
